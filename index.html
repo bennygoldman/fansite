@@ -27,6 +27,7 @@
     </nav>
 
     <main>
+        <!-- COMPLETE, DO NOT TOUCH -->
         <section class="about">
             <h3>{What Deaner was Talking} About</h3>
             <div class="quote">
@@ -55,6 +56,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- COMPLETE, DO NOT TOUCH -->
         <section class="gallery">
             <h3>Discography</h3>
             <div class="photos">
@@ -67,6 +70,29 @@
                 <img src="./assets/images/7-whitepepper.jpg" alt="White Pepper">
                 <img src="./assets/images/8-quebec.png" alt="Quebec">
                 <img src="./assets/images/9-lacucaracha.jpg" alt="La Cucaracha">
+            </div>
+        </section>
+
+        <section class="comments">
+            <h3>Join the Conversation</h3>
+            <div class="input">
+                <img src="./assets/images/0-boognish-avi.png" alt="avatar">
+                <form id="commentForm">
+                    <label>NAME
+                        <input class="field" type="text" name="nameInput" id="nameInput" placeholder="Enter your name">
+                    </label>
+                    <label>COMMENT
+                        <textarea class="field" name="commentInput" id="commentInput" placeholder="Add a new comment"
+                            rows="3"></textarea>
+                    </label>
+                    <input type="submit" value="COMMENT">
+                </form>
+            </div>
+            <div class="output">
+                <ul id="commentDisplay">
+                    <!-- CONTENT POPULATED BY JS -->
+
+                </ul>
             </div>
         </section>
 
