@@ -158,3 +158,171 @@ nav {
 
 
 }
+
+footer {
+    --footer-font-d: .875rem;
+    --footer-lh-d: 1.25rem;
+    --footer-font-m: .8125rem;
+    --footer-lh-m: 1.125rem;
+    background-color: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: var(--margin-between-components-m);
+
+    @media (min-width: 768px) {
+        padding: 1.5rem var(--margin-between-components-d);
+    }
+
+    >div {
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        &.top {
+            gap: 0;
+            padding: 0.5rem 0;
+            margin-bottom: 0.5rem;
+
+            @media (min-width: 768px) {
+                margin-bottom: 0;
+                padding: 0;
+                gap: 1.5rem;
+            }
+
+            >h3 {
+                font-weight: var(--demi);
+                letter-spacing: .1rem;
+                font-size: var(--sec-header-font-m);
+                line-height: var(--sec-header-lh-m);
+                margin-bottom: 1rem;
+
+                @media (min-width: 768px) {
+                    margin-bottom: 0;
+                    font-size: var(--sec-header-font-d);
+                    line-height: var(--sec-header-lh-d);
+                }
+            }
+
+            >.socials {
+                display: flex;
+                gap: 2rem;
+                margin-bottom: 0.5rem;
+
+                @media (min-width:768px) {
+                    margin-bottom: 0;
+                }
+
+                >a>img {
+                    width: 100%;
+                    height: 24px;
+                }
+            }
+
+            >.logo {
+                margin-top: 0.25rem;
+                margin-left: auto;
+                margin-right: 1.5rem;
+
+                >img {
+
+                    @media (max-width: 767px) {
+                        display: none;
+                    }
+
+                    @media (min-width:768px) {
+                        display: inline-block;
+                    }
+                }
+
+            }
+
+        }
+
+        &.mid {
+            gap: 1.25rem;
+
+            @media (min-width: 768px) {
+
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                gap: 2rem;
+
+            }
+
+            >div {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                @media (min-width: 768px) {}
+
+                >div {
+                    &:first-of-type {
+                        >p {
+                            font-weight: var(--bold);
+                            color: var(--alabaster);
+                            letter-spacing: .0375rem;
+
+                            @media (min-width: 768px) {
+                                font-weight: var(--regular);
+                            }
+                        }
+                    }
+
+                    >p {
+                        font-size: var(--footer-font-m);
+                        line-height: var(--footer-lh-m);
+
+                        @media (min-width: 768px) {
+                            font-size: var(--footer-font-d);
+                            line-height: var(--footer-lh-d);
+                        }
+
+
+
+                        >a {
+                            text-decoration: none;
+                            color: inherit;
+
+                            &:hover {
+                                color: var(--silver);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        &.btm {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+
+            >img {
+                @media (min-width:768px) {
+                    display: none;
+                }
+            }
+
+            >p {
+                font-size: var(--footer-font-m);
+                line-height: var(--footer-lh-m);
+
+                @media (min-width: 768px) {
+                    font-size: var(--footer-font-d);
+                    line-height: var(--footer-lh-d);
+                }
+            }
+        }
+    }
+}
