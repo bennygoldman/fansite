@@ -118,4 +118,6 @@ const createDomElement = (name, date, comment) => {
 
 };
 
+$commentForm.addEventListener('submit', submitCommentEvent);
+
 renderComments(commentArray);
