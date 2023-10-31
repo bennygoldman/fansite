@@ -1,21 +1,21 @@
 // STATIC COMMENTS FOR TESTING
-let commentArray = [
-    {
-        name: `Eddie Dingell`,
-        date: `12/25/2022`,
-        comment: `Won't you tell me what's on your mind? If you'd open your head tell me what would I find. Are you for real? What do you feel?`
-    },
-    {
-        name: `Pandy Fackler`,
-        date: `03/17/2023`,
-        comment: `I was almost in a coma from doing the Bossa Nova. And the Funky Cold Medina.`
-    },
-    {
-        name: `The Stallion`,
-        date: `04/04/2020`,
-        comment: `1. I can drink. 2. I get groomed. 3. I go for a walk. I am The Stallion.`
-    },
-];
+// let commentArray = [
+//     {
+//         name: `Pandy Fackler`,
+//         date: `03/17/2023`,
+//         comment: `I was almost in a coma from doing the Bossa Nova. And the Funky Cold Medina.`
+//     },
+//     {
+//         name: `Eddie Dingell`,
+//         date: `12/25/2022`,
+//         comment: `Won't you tell me what's on your mind? If you'd open your head tell me what would I find. Are you for real? What do you feel?`
+//     },
+//     {
+//         name: `The Stallion`,
+//         date: `04/04/2020`,
+//         comment: `1. I can drink. 2. I get groomed. 3. I go for a walk. I am The Stallion.`
+//     },
+// ];
 
 // GET DOM ELEMENTS
 const $commentForm = document.getElementById('commentForm');
@@ -81,34 +81,35 @@ const createNewElement = (el, classNames, text) => {
     return $el;
 };
 
-
 // RENDERS ALL COMMENTS IN ARRAY TO DOM
 const renderComments = (arr) => {
     $commentDisplay && ($commentDisplay.innerHTML = '');
     arr.forEach(comment => {
         const name = comment.name;
-        const date = comment.date;
+        // const date = comment.date;
+        const date = convertTimestampToDate(comment.timestamp);
+        const id = comment.id;
         const content = comment.comment;
 
-        createDomElement(name, date, content);
+        createDomElement(name, date, content, id);
     });
 };
 
 // CREATES A COMMENT OBJECT FOR ADDING TO AN ARRAY
 const createComment = (name, comment) => {
 
-    const date = convertTimestampToDate();
+    // const date = convertTimestampToDate();
 
     return {
         name: name,
         comment: comment,
-        date: date,
+        // date: date,
     };
 
 };
 
 // CREATES A <LI> ELEMENT FROM AN ARRAY ITEM AND RENDERS IT TO THE DOM
-const createDomElement = (name, date, comment) => {
+const createDomElement = (name, date, comment, id, likes) => {
     const $listEl = createNewElement('li');
     const $articleEl = createNewElement('article');
     const $asideEl = createNewElement('aside');
@@ -121,13 +122,12 @@ const createDomElement = (name, date, comment) => {
     const $dateEl = createNewElement('time', ['txt', 'comment', 'date'], date);
     const $commentEl = createNewElement('p', ['txt', 'comment', 'copy'], comment);
     const $likeBtnEl = createNewElement('button', '', 'like');
-    const $likeCounterEl = createNewElement('p', ['txt', 'comment', 'label'], 'TKTKTK');
+    $likeBtnEl.setAttribute('data-id', id ? id : null);
+    const $likeCounterEl = createNewElement('p', ['txt', 'comment', 'label'], likes ? `${likes} likes` : '0 likes');
     const $delBtnEl = createNewElement('button', '', 'delete');
+    $delBtnEl.setAttribute('data-id', id ? id : null);
 
     $aviEl.src = '../assets/images/0-boognish-avi.png';
-    // $nameEl.textContent = name;
-    // $dateEl.textContent = date;
-    // $commentEl.textContent = comment;
 
     $asideEl.appendChild($aviEl);
 
@@ -149,17 +149,62 @@ const createDomElement = (name, date, comment) => {
 
     $listEl.appendChild($articleEl);
 
-
-
-
-    // $divEl.appendChild($nameEl);
-    // $divEl.appendChild($dateEl);
-    // $divEl.appendChild($commentEl);
-    // $listEl.appendChild($divEl);
     $commentDisplay.appendChild($listEl);
 
 };
 
 $commentForm.addEventListener('submit', submitCommentEvent);
 
-renderComments(commentArray);
+
+// API DETAILS FOR FETCH REQUEST
+const apiUrl = `https://project-1-api.herokuapp.com`;
+const queryParams = `?api_key=`;
+const apiKey = `1636ce99-0ac4-46f6-b625-cac457fb121f`;
+const routeComments = `${apiUrl}/comments${queryParams}${apiKey}`;
+const postDataTest = {
+    name: 'Benny G',
+    comment: 'Ween da Best Eva'
+};
+
+async function fetchData(apiUrl) {
+    try {
+        const response = await fetch(apiUrl);
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            renderComments(data);
+            // return data;
+        } else {
+            console.log('NOT OK!');
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        throw error;
+    }
+}
+
+
+// fetch(routeComments, {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+
+//     },
+//     body: JSON.stringify(postDataTest)
+// })
+// .then(res => {
+//     if (res.ok) { console.log(`OK!`); }
+//     else { console.log(`NOT OK!`); }
+// })
+// .then(data => console.log(data))
+// .catch(error => console.log(error));
+
+// fetchData(routeComments);
+
+// renderComments(commentArray);
+
+function initialLoad(apiUrl = routeComments) {
+    fetchData(apiUrl);
+}
+
+initialLoad();
