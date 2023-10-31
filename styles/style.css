@@ -618,6 +618,7 @@ main {
 
                     }
 
+
                     >.show {
                         margin-bottom: 0.875rem;
 
@@ -642,6 +643,11 @@ main {
                             width: 100%;
                             margin: 0;
                         }
+                    }
+
+                    >time {
+
+                        font-weight: var(--demi);
                     }
 
                     >.button {
@@ -962,10 +968,6 @@ footer {
         line-height: var(--body-lh-m);
         font-weight: 400;
         letter-spacing: .0125rem;
-
-        &:nth-of-type(2) {
-            font-weight: var(--demi);
-        }
 
         &.label {
             &.mobile {

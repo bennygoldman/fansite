@@ -34,15 +34,20 @@ let showArray = [
 
 const $showListEl = document.querySelector('.show-list');
 
-const createNewElement = (el, className, text) => {
+const createNewElement = (el, classNames, text) => {
     const $el = document.createElement(el);
-    className && ($el.classList.add(className));
+    if (Array.isArray(classNames)) {
+        classNames.forEach(className => $el.classList.add(className));
+    } else {
+        classNames && ($el.classList.add(classNames));
+    }
     text && ($el.textContent = text);
     return $el;
 };
 
 const createButton = () => {
     const button = document.createElement('input');
+    button.classList.add('txt', 'show', 'button');
     button.setAttribute('type', 'submit');
     button.setAttribute('value', 'BUY TICKETS');
     return button;
@@ -51,9 +56,10 @@ const createButton = () => {
 const renderShows = (arr) => {
 
     const $desktopDiv = createNewElement('div', 'desktop');
-    const $dateLabel = createNewElement('p', 'label-desktop', 'DATE');
-    const $placeLabel = createNewElement('p', 'label-desktop', 'VENUE');
-    const $locationLabel = createNewElement('p', 'label-desktop', 'LOCATION');
+    console.log($desktopDiv);
+    const $dateLabel = createNewElement('p', ['txt', 'show', 'label', 'desktop'], 'DATE');
+    const $placeLabel = createNewElement('p', ['txt', 'show', 'label', 'desktop'], 'VENUE');
+    const $locationLabel = createNewElement('p', ['txt', 'show', 'label', 'desktop'], 'LOCATION');
     $desktopDiv.appendChild($dateLabel);
     $desktopDiv.appendChild($placeLabel);
     $desktopDiv.appendChild($locationLabel);
@@ -61,12 +67,12 @@ const renderShows = (arr) => {
 
     arr.forEach((show) => {
         const $showRowEl = createNewElement('div');
-        const $dateLabel = createNewElement('p', 'label-mobile', 'DATE');
-        const $date = createNewElement('p', '', show.date);
-        const $placeLabel = createNewElement('p', 'label-mobile', 'VENUE');
-        const $place = createNewElement('p', '', show.place);
-        const $locationLabel = createNewElement('p', 'label-mobile', 'LOCATION');
-        const $location = createNewElement('p', '', show.location);
+        const $dateLabel = createNewElement('p', ['txt', 'show', 'label', 'mobile'], 'DATE');
+        const $date = createNewElement('time', ['txt', 'show'], show.date);
+        const $placeLabel = createNewElement('p', ['txt', 'show', 'label', 'mobile'], 'VENUE');
+        const $place = createNewElement('p', ['txt', 'show'], show.place);
+        const $locationLabel = createNewElement('p', ['txt', 'show', 'label', 'mobile'], 'LOCATION');
+        const $location = createNewElement('p', ['txt', 'show'], show.location);
         const $showButtonEl = createButton();
         $showRowEl.appendChild($dateLabel);
         $showRowEl.appendChild($date);
