@@ -4,3 +4,9 @@
 #ignore temp
 .DS_Store
 ./assets/.DS_Store
+
+#ignore old files
+/_archive
+
+#ignore html readme
+README.html

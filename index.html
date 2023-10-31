@@ -26,26 +26,36 @@
         </ul>
     </nav>
 
+    <header>
+        <hgroup>
+            <h1>Boognish Rising</h1>
+            <p class="txt header">... a tribute to Ween</p>
+        </hgroup>
+    </header>
+
     <main>
-        <!-- COMPLETE, DO NOT TOUCH -->
         <section class="about">
-            <h3>{What Deaner was Talking} About</h3>
-            <div class="quote">
-                <img src="./assets/images/0-ween-hero.jpg" alt="band">
-                <p> “If I was king, I'd wear a ring, and never hurt my people. I'd stay alert, and dressed to kill. I
+            <h2>{What Deaner was Talking} About</h2>
+            <img src="./assets/images/0-ween-philly.jpeg" alt="band">
+            <blockquote>
+                <p class="txt quote"> “If I was king, I'd wear a ring, and never hurt my people. I'd stay alert, and
+                    dressed to kill. I
                     might even slip you something.”</p>
-                <p>- Gene Ween, lead vocalist of Ween</p>
-            </div>
+                <p class="txt quote author">- Gene Ween, lead vocalist of Ween</p>
+            </blockquote>
             <div class="bio">
-                <h4>Ween</h4>
+                <h3>Ween</h3>
                 <div>
-                    <p>Ween were the ultimate band of the alternative rock era, a talented and
+                    <p class="txt bio">
+                        Ween were the ultimate band of the alternative rock era, a talented and
                         deliriously odd duo whose work traveled far beyond the constraints of parody and novelty into
                         the heart of surrealist ecstasy. Fueled by
                         psychedelic mushrooms and a craving for hot meals, Ween created their own
                         self-contained universe, a parallel dimension where the only sacred cow was their own demon god,
-                        the Boognish.</p>
-                    <p>The duo formed in New Hope, Pennsylvania in 1984, when the then 14 year olds cut the first of
+                        the Boognish.
+                    </p>
+                    <p class="txt bio">
+                        The duo formed in New Hope, Pennsylvania in 1984, when the then 14 year olds cut the first of
                         thousands of home recordings. In 1990, Ween released
                         their debut double album
                         <span>GodWeenSatan: The Oneness</span>, a sprawling release that careened from
@@ -57,10 +67,9 @@
             </div>
         </section>
 
-        <!-- COMPLETE, DO NOT TOUCH -->
         <section class="gallery">
-            <h3>Discography</h3>
-            <div class="photos">
+            <h2>Discography</h2>
+            <div>
                 <img src="./assets/images/1-godweensatan.jpg" alt="GodWeenSatan: The Oneness">
                 <img src="./assets/images/2-thepod.jpg" alt="The Pod">
                 <img src="./assets/images/3-pureguava.jpg" alt="Pure Guava">
@@ -74,33 +83,40 @@
         </section>
 
         <section class="comments">
-            <h3>Join the Conversation</h3>
-            <div class="input">
-                <img src="./assets/images/0-boognish-avi.png" alt="avatar">
-                <form id="commentForm">
-                    <label>NAME
-                        <input class="field" type="text" name="nameInput" id="nameInput" placeholder="Enter your name">
-                    </label>
-                    <label>COMMENT
-                        <textarea class="field" name="commentInput" id="commentInput" placeholder="Add a new comment"
-                            rows="3"></textarea>
-                    </label>
-                    <input type="submit" value="COMMENT">
-                </form>
-            </div>
-            <div class="output">
-                <ul id="commentDisplay">
+            <h2>Join the Conversation</h2>
+            <section class="input">
+                <aside>
+                    <img src="./assets/images/0-boognish-avi.png" alt="avatar" class="avatar">
+                </aside>
+                <div>
+                    <form id="commentForm">
+                        <label for="nameInput" class="txt form label">NAME</label>
+
+                        <input class="txt form field" type="text" name="nameInput" id="nameInput"
+                            placeholder="Enter your name">
+
+                        <label for="commentInput" class="txt form label">COMMENT</label>
+
+                        <textarea class="txt form field" name="commentInput" id="commentInput"
+                            placeholder="Add a new comment" rows="3"></textarea>
+
+                        <input class="txt form button" type="submit" value="COMMENT">
+                    </form>
+                </div>
+            </section>
+            <section class="output">
+                <ul id="commentDisplay" data-type="commentDisplay">
                     <!-- CONTENT POPULATED BY JS -->
 
                 </ul>
-            </div>
+            </section>
         </section>
 
     </main>
 
     <footer>
         <div class="top">
-            <h3>Get In Touch</h3>
+            <h2>Get In Touch</h2>
             <div class="socials">
                 <a href="http://instagram.com/weeninfo"><img src="./assets/icons/svg/icon-instagram.svg"
                         alt="insta"></a>
@@ -161,7 +177,7 @@
             <p>The Boognish © 2023 All Rights Reserved</p>
         </div>
     </footer>
-    <script src="./scripts/index.js"></script>
+    <!-- <script src="./scripts/index.js"></script> -->
 </body>
 
 </html>
