@@ -70,6 +70,18 @@ const submitCommentEvent = (e) => {
     }
 };
 
+const createNewElement = (el, classNames, text) => {
+    const $el = document.createElement(el);
+    if (Array.isArray(classNames)) {
+        classNames.forEach(className => $el.classList.add(className));
+    } else {
+        classNames && ($el.classList.add(classNames));
+    }
+    text && ($el.textContent = text);
+    return $el;
+};
+
+
 // RENDERS ALL COMMENTS IN ARRAY TO DOM
 const renderComments = (arr) => {
     $commentDisplay && ($commentDisplay.innerHTML = '');
@@ -97,23 +109,53 @@ const createComment = (name, comment) => {
 
 // CREATES A <LI> ELEMENT FROM AN ARRAY ITEM AND RENDERS IT TO THE DOM
 const createDomElement = (name, date, comment) => {
-    const $listEl = document.createElement('li');
-    const $aviEl = document.createElement('img');
-    const $divEl = document.createElement('div');
-    const $nameEl = document.createElement('p');
-    const $dateEl = document.createElement('p');
-    const $commentEl = document.createElement('p');
+    const $listEl = createNewElement('li');
+    const $articleEl = createNewElement('article');
+    const $asideEl = createNewElement('aside');
+    const $aviEl = createNewElement('img', 'avatar');
+    const $divEl = createNewElement('div');
+    const $topDivEl = createNewElement('div');
+    const $midDivEl = createNewElement('div');
+    const $btmDivEl = createNewElement('div');
+    const $nameEl = createNewElement('p', ['txt', 'comment', 'name'], name);
+    const $dateEl = createNewElement('time', ['txt', 'comment', 'date'], date);
+    const $commentEl = createNewElement('p', ['txt', 'comment', 'copy'], comment);
+    const $likeBtnEl = createNewElement('button', '', 'like');
+    const $likeCounterEl = createNewElement('p', ['txt', 'comment', 'label'], 'TKTKTK');
+    const $delBtnEl = createNewElement('button', '', 'delete');
 
     $aviEl.src = '../assets/images/0-boognish-avi.png';
-    $nameEl.textContent = name;
-    $dateEl.textContent = date;
-    $commentEl.textContent = comment;
+    // $nameEl.textContent = name;
+    // $dateEl.textContent = date;
+    // $commentEl.textContent = comment;
 
-    $listEl.appendChild($aviEl);
-    $divEl.appendChild($nameEl);
-    $divEl.appendChild($dateEl);
-    $divEl.appendChild($commentEl);
-    $listEl.appendChild($divEl);
+    $asideEl.appendChild($aviEl);
+
+    $topDivEl.appendChild($nameEl);
+    $topDivEl.appendChild($dateEl);
+
+    $midDivEl.appendChild($commentEl);
+
+    $btmDivEl.appendChild($likeBtnEl);
+    $btmDivEl.appendChild($likeCounterEl);
+    $btmDivEl.appendChild($delBtnEl);
+
+    $divEl.appendChild($topDivEl);
+    $divEl.appendChild($midDivEl);
+    $divEl.appendChild($btmDivEl);
+
+    $articleEl.appendChild($asideEl);
+    $articleEl.appendChild($divEl);
+
+    $listEl.appendChild($articleEl);
+
+
+
+
+    // $divEl.appendChild($nameEl);
+    // $divEl.appendChild($dateEl);
+    // $divEl.appendChild($commentEl);
+    // $listEl.appendChild($divEl);
     $commentDisplay.appendChild($listEl);
 
 };
