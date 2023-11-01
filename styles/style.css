@@ -504,7 +504,8 @@ main {
                                         justify-content: space-between;
                                         gap: 1rem;
 
-                                        >button {
+                                        >input[type=image] {
+                                            cursor: pointer;
 
                                             /* &:first-of-type {} */
 

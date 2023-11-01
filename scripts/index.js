@@ -123,12 +123,31 @@ const createDomElement = (name, date, comment, id, likes) => {
     const $nameEl = createNewElement('p', ['txt', 'comment', 'name'], name);
     const $dateEl = createNewElement('time', ['txt', 'comment', 'date'], date);
     const $commentEl = createNewElement('p', ['txt', 'comment', 'copy'], comment);
-    const $likeBtnEl = createNewElement('button', '', 'like');
+    // const $likeBtnEl = createNewElement('button', '', 'like');
+    // const $likeBtnEl = createNewElement('button');
+    const $likeBtnEl = createNewElement('input');
+    $likeBtnEl.setAttribute('type', 'image');
+    $likeBtnEl.setAttribute('alt', 'like');
     $likeBtnEl.setAttribute('data-id', id ? id : null);
+    $likeBtnEl.src = '../assets/icons/svg/icon-like.svg';
+
+    // const $likeImgEl = createNewElement('img');
+
+    // $likeBtnEl.appendChild($likeImgEl);
+
     const $likeCounterEl = createNewElement('p', ['txt', 'comment', 'label'], likes && likes === 1 ? `${likes} like` : `${likes} likes`);
 
-    const $delBtnEl = createNewElement('button', '', 'delete');
+    // const $delBtnEl = createNewElement('button', '', 'delete');
+    // const $delBtnEl = createNewElement('button');
+    const $delBtnEl = createNewElement('input');
+    $delBtnEl.setAttribute('type', 'image');
+    $delBtnEl.setAttribute('alt', 'delete');
     $delBtnEl.setAttribute('data-id', id ? id : null);
+
+    // const $delImgEl = createNewElement('img');
+    $delBtnEl.src = '../assets/icons/svg/icon-delete.svg';
+
+    // $delBtnEl.appendChild($delImgEl);
 
     $aviEl.src = '../assets/images/0-boognish-avi.png';
 
@@ -161,6 +180,10 @@ $commentForm.addEventListener('submit', submitCommentEvent);
 
 // API DETAILS FOR FETCH REQUEST
 const apiUrl = `https://project-1-api.herokuapp.com`;
+const jsonBinUrl = `https://api.jsonbin.io/v3/b/6541e0f912a5d37659934004`;
+const jsonBinApiKey = `$2a$10$fW/LUrdAWOy3flNyjCDoFOFMlUyRa.fcxMsLZHlgL4Tl/S5ptSUNK`;
+const jsonBinHeaders = { "X-Master-Key": `${jsonBinApiKey}` };
+
 const queryParams = `?api_key=`;
 const apiKey = `1636ce99-0ac4-46f6-b625-cac457fb121f`;
 const routeComments = `${apiUrl}/comments${queryParams}${apiKey}`;
@@ -171,12 +194,14 @@ const postDataTest = {
 
 async function fetchData(apiUrl) {
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            method: "GET",
+            headers: jsonBinHeaders
+        });
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
-            renderComments(data);
-            // return data;
+            console.log(data.record.comments);
+            renderComments(data.record.comments);
         } else {
             console.log('NOT OK!');
         }
@@ -192,6 +217,6 @@ function initialLoad(apiUrl = routeComments) {
     fetchData(apiUrl);
 }
 
-initialLoad();
+initialLoad(jsonBinUrl);
 
 

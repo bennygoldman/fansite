@@ -56,7 +56,6 @@ const createButton = () => {
 const renderShows = (arr) => {
 
     const $desktopDiv = createNewElement('div', 'desktop');
-    console.log($desktopDiv);
     const $dateLabel = createNewElement('p', ['txt', 'show', 'label', 'desktop'], 'DATE');
     const $placeLabel = createNewElement('p', ['txt', 'show', 'label', 'desktop'], 'VENUE');
     const $locationLabel = createNewElement('p', ['txt', 'show', 'label', 'desktop'], 'LOCATION');
@@ -67,6 +66,7 @@ const renderShows = (arr) => {
 
     arr.forEach((show) => {
         const $showRowEl = createNewElement('div');
+        $showRowEl.setAttribute('data-showrow', '');
         const $dateLabel = createNewElement('p', ['txt', 'show', 'label', 'mobile'], 'DATE');
         const $date = createNewElement('time', ['txt', 'show'], convertTimestampToDate(show.date));
         const $placeLabel = createNewElement('p', ['txt', 'show', 'label', 'mobile'], 'VENUE');
@@ -92,6 +92,8 @@ const convertTimestampToDate = (timestamp) => {
     return formattedDate;
 };
 
+
+
 // API DETAILS FOR FETCH REQUEST
 const apiUrl = `https://project-1-api.herokuapp.com`;
 const queryParams = `?api_key=`;
@@ -104,9 +106,7 @@ async function fetchData(apiUrl) {
         const response = await fetch(apiUrl);
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             renderShows(data);
-            // return data;
         } else {
             console.log('NOT OK!');
         }
