@@ -200,7 +200,6 @@ async function fetchData(apiUrl) {
         });
         if (response.ok) {
             const data = await response.json();
-            console.log(data.record.comments);
             renderComments(data.record.comments);
         } else {
             console.log('NOT OK!');
