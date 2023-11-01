@@ -90,8 +90,9 @@ const renderComments = (arr) => {
         const date = convertTimestampToDate(comment.timestamp);
         const id = comment.id;
         const content = comment.comment;
+        const likes = comment.likes;
 
-        createDomElement(name, date, content, id);
+        createDomElement(name, date, content, id, likes);
     });
 };
 
@@ -110,6 +111,7 @@ const createComment = (name, comment) => {
 
 // CREATES A <LI> ELEMENT FROM AN ARRAY ITEM AND RENDERS IT TO THE DOM
 const createDomElement = (name, date, comment, id, likes) => {
+
     const $listEl = createNewElement('li');
     const $articleEl = createNewElement('article');
     const $asideEl = createNewElement('aside');
@@ -123,7 +125,8 @@ const createDomElement = (name, date, comment, id, likes) => {
     const $commentEl = createNewElement('p', ['txt', 'comment', 'copy'], comment);
     const $likeBtnEl = createNewElement('button', '', 'like');
     $likeBtnEl.setAttribute('data-id', id ? id : null);
-    const $likeCounterEl = createNewElement('p', ['txt', 'comment', 'label'], likes ? `${likes} likes` : '0 likes');
+    const $likeCounterEl = createNewElement('p', ['txt', 'comment', 'label'], likes && likes === 1 ? `${likes} like` : `${likes} likes`);
+
     const $delBtnEl = createNewElement('button', '', 'delete');
     $delBtnEl.setAttribute('data-id', id ? id : null);
 
@@ -183,24 +186,6 @@ async function fetchData(apiUrl) {
     }
 }
 
-
-// fetch(routeComments, {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-
-//     },
-//     body: JSON.stringify(postDataTest)
-// })
-// .then(res => {
-//     if (res.ok) { console.log(`OK!`); }
-//     else { console.log(`NOT OK!`); }
-// })
-// .then(data => console.log(data))
-// .catch(error => console.log(error));
-
-// fetchData(routeComments);
-
 // renderComments(commentArray);
 
 function initialLoad(apiUrl = routeComments) {
@@ -208,3 +193,5 @@ function initialLoad(apiUrl = routeComments) {
 }
 
 initialLoad();
+
+
