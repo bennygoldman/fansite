@@ -18,9 +18,9 @@ Key differences between the original assignment and this "Fansite":
 
 ### New
 
-- I used semantic HTML wherever possible, limited class names and kept extraneous wrappers to a minimum, working from a component-focused, scoped-styling structure.
-- I wrote vanilla CSS without any pre- or post-processors in order to try new native variable naming and nesting features.
-- I used JavaScript's built-in fetch API to interact with the server.
+- HTML is semantic wherever possible. I limited class names and kept extraneous wrappers to a minimum, working from a component-focused, scoped-styling structure.
+- CSS is vanilla without any pre- or post-processors. I wanted to to try native variable naming and new nesting features.
+- JavaScript uses built-in fetch API to interact with the server.
 
 Time permitting, I'll make a few minor improvements to clean it up.
 
