@@ -4,6 +4,8 @@
 
 It's built in HTML, CSS, and JS, and is responsive at mobile, tablet, and desktop viewports.
 
+See it live here: <https://bennygoldman.github.io/fansite/>
+
 The **Comment** section uses JavaScript to make requests to an external API: `GET`, `PUT`, and `DELETE` existing data, `POST` new data from a front-end form, and render the data to the DOM.
 
 The concept and design are based closely on an assignment I completed for bootcamp, with modifications to further develop my skillset.
