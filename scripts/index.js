@@ -56,7 +56,7 @@ const domActionFactory = () => {
 
         $delBtnEl.src = '../assets/icons/svg/icon-delete.svg';
 
-        $aviEl.src = '../assets/images/0-boognish-avi.png';
+        $aviEl.src = './assets/images/0-boognish-avi.png';
 
         $asideEl.appendChild($aviEl);
 
