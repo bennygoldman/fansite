@@ -37,7 +37,7 @@ const domActionFactory = () => {
         $likeBtnEl.setAttribute('type', 'image');
         $likeBtnEl.setAttribute('alt', 'like');
         $likeBtnEl.setAttribute('data-id', id ? id : null);
-        $likeBtnEl.src = '../assets/icons/svg/icon-like.svg';
+        $likeBtnEl.src = './assets/icons/svg/icon-like.svg';
         $likeBtnEl.addEventListener('click', e => {
             const commentId = e.target.getAttribute('data-id');
             likeCommentById(commentId);
@@ -54,7 +54,7 @@ const domActionFactory = () => {
             deleteCommentById(commentId);
         });
 
-        $delBtnEl.src = '../assets/icons/svg/icon-delete.svg';
+        $delBtnEl.src = './assets/icons/svg/icon-delete.svg';
 
         $aviEl.src = './assets/images/0-boognish-avi.png';
 
