@@ -1,5 +1,5 @@
 // DOM ACTIONS
-const commentActionFactory = () => {
+const domActionFactory = () => {
 
     // CLEARS THE COMMENTS FROM THE DOM
     const clearComments = () => {
@@ -38,6 +38,10 @@ const commentActionFactory = () => {
         $likeBtnEl.setAttribute('alt', 'like');
         $likeBtnEl.setAttribute('data-id', id ? id : null);
         $likeBtnEl.src = '../assets/icons/svg/icon-like.svg';
+        $likeBtnEl.addEventListener('click', e => {
+            const commentId = e.target.getAttribute('data-id');
+            likeCommentById(commentId);
+        });
 
         const $likeCounterEl = createNewElement('p', ['txt', 'comment', 'label'], likes && likes === 1 ? `${likes} like` : `${likes} likes`);
 
@@ -45,6 +49,10 @@ const commentActionFactory = () => {
         $delBtnEl.setAttribute('type', 'image');
         $delBtnEl.setAttribute('alt', 'delete');
         $delBtnEl.setAttribute('data-id', id ? id : null);
+        $delBtnEl.addEventListener('click', e => {
+            const commentId = e.target.getAttribute('data-id');
+            deleteCommentById(commentId);
+        });
 
         $delBtnEl.src = '../assets/icons/svg/icon-delete.svg';
 
@@ -99,6 +107,18 @@ const commentActionFactory = () => {
 
     };
 
+    // DELETE A COMMENT
+    const deleteCommentById = id => {
+        const commentApi = fetchActionFactory();
+        commentApi.deleteComment(id, 'delete');
+    };
+
+    // LIKE A COMMENT
+    const likeCommentById = id => {
+        const commentApi = fetchActionFactory();
+        commentApi.likeComment(id, 'like');
+    };
+
     return { renderComments };
 };
 
@@ -106,20 +126,23 @@ const commentActionFactory = () => {
 const fetchActionFactory = () => {
     const commentsBaseUrl = `https://project-1-api.herokuapp.com/comments`;
     const apiKey = `?api_key=1636ce99-0ac4-46f6-b625-cac457fb121f`;
-    let id = ``;
-    let action = ``;
     const allCommentsRoute = `${commentsBaseUrl}${apiKey}`;
-    const singleCommentRoute = `${commentsBaseUrl}${id}${action}${apiKey}`;
+    const commentActionsRoute = (id, action) => {
+        if (action === 'like') {
+            return `${commentsBaseUrl}/${id}/${action}${apiKey}`;
+        }
+        else { return `${commentsBaseUrl}/${id}${apiKey}`; }
+    };
 
     const getComments = async () => {
         let data;
         try {
             const response = await fetch(allCommentsRoute);
             if (response.ok) {
+                const domMethods = domActionFactory();
                 data = await response.json();
-                // console.log(data);
-                const domMethods = commentActionFactory();
-                domMethods.renderComments(data);
+                const sortedData = [...data].sort((a, b) => b.timestamp - a.timestamp);
+                domMethods.renderComments(sortedData);
             }
             else { console.log('NOT OK!'); }
         } catch (error) {
@@ -155,12 +178,11 @@ const fetchActionFactory = () => {
         }
     };
 
-    const likeComment = async comment => {
-        try {
-            id = comment.id;
-            action = `like`;
+    const likeComment = async (commentId, commentAction) => {
+        const route = commentActionsRoute(commentId, commentAction);
 
-            let response = await fetch(singleCommentRoute, {
+        try {
+            let response = await fetch(route, {
                 method: "PUT",
             });
 
@@ -172,10 +194,11 @@ const fetchActionFactory = () => {
         }
     };
 
-    const deleteComment = async comment => {
+    const deleteComment = async commentId => {
+        const route = commentActionsRoute(commentId);
         try {
-            id = comment.id;
-            let response = await fetch(singleCommentRoute, {
+            id = commentId;
+            let response = await fetch(route, {
                 method: "DELETE",
             });
 
@@ -195,23 +218,25 @@ const initalizeForm = () => {
     const $commentForm = document.getElementById('commentForm');
 
     // REMOVES ERROR CLASS FROM AN ELEMENT
-    const clearErrorClass = (el) => {
-        if (el.classList.contains('error')) {
-            el.classList.remove('error');
-        }
-    };
+    // const clearErrorClass = (el) => {
+    //     if (el.classList.includes('error')) {
+    //         el.classList.remove('error');
+    //     }
+    // };
 
     // ADDS ERROR CLASS TO AN ELEMENT
-    const addErrorClass = (el) => {
-        el.classList.add('error');
-    };
+    // const addErrorClass = (el) => {
+    // el.classList.add('error');
+    // };
 
+    // const checkError = el => {
 
-    const submitCommentEvent = (e) => {
+    // };
+
+    const submitCommentEvent = e => {
         e.preventDefault();
         const name = e.target.nameInput.value;
         const comment = e.target.commentInput.value;
-        console.log(name, comment);
 
         if (name && comment) {
             const commentApi = fetchActionFactory();
@@ -234,6 +259,7 @@ const initalizeForm = () => {
 
 };
 
+// INITIAL PAGE LOAD
 const loadPage = () => {
     // VARIABLES FOR DOM ELEMENTS
     const commentsApi = fetchActionFactory();
