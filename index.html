@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Fan Site - Biography</title>
+</head>
+
+<body>
+    <nav>
+        <a href="/">
+            <img src="./assets/logo/ween-logo.png" alt="logo">
+        </a>
+        <ul>
+            <li>
+                <a href="/" class="active">Biography</a>
+            </li>
+            <li>
+                <a href="./pages/shows.html">Shows</a>
+            </li>
+        </ul>
+    </nav>
+
+    <header>
+        <hgroup>
+            <h1>Boognish Rising</h1>
+            <p class="txt header">... a tribute to Ween</p>
+        </hgroup>
+    </header>
+
+    <main>
+        <section class="about">
+            <h2>{What Deaner was Talking} About</h2>
+            <img src="./assets/images/0-ween-philly.jpeg" alt="band">
+            <blockquote>
+                <p class="txt quote"> “If I was king, I'd wear a ring, and never hurt my people. I'd stay alert, and
+                    dressed to kill. I
+                    might even slip you something.”</p>
+                <p class="txt quote author">- Gene Ween, lead vocalist of Ween</p>
+            </blockquote>
+            <div class="bio">
+                <h3>Ween</h3>
+                <div>
+                    <p class="txt bio">
+                        Ween were the ultimate band of the alternative rock era, a talented and
+                        deliriously odd duo whose work traveled far beyond the constraints of parody and novelty into
+                        the heart of surrealist ecstasy. Fueled by
+                        psychedelic mushrooms and a craving for hot meals, Ween created their own
+                        self-contained universe, a parallel dimension where the only sacred cow was their own demon god,
+                        the Boognish.
+                    </p>
+                    <p class="txt bio">
+                        The duo formed in New Hope, Pennsylvania in 1984, when the then 14 year olds cut the first of
+                        thousands of home recordings. In 1990, Ween released
+                        their debut double album
+                        <span>GodWeenSatan: The Oneness</span>, a sprawling release that careened from
+                        hardcore to helium pop to
+                        Prince-Xeroxed funk. 1991's <span>The Pod</span> was another
+                        masterpiece of dementia recorded under the influence of Scotchgard.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2>Discography</h2>
+            <div>
+                <img src="./assets/images/1-godweensatan.jpg" alt="GodWeenSatan: The Oneness">
+                <img src="./assets/images/2-thepod.jpg" alt="The Pod">
+                <img src="./assets/images/3-pureguava.jpg" alt="Pure Guava">
+                <img src="./assets/images/4-chocolateandcheese.jpg" alt="Chocolate and Cheese">
+                <img src="./assets/images/5-twelvegoldencountrygreats.jpg" alt="12 Golden Country Greats">
+                <img src="./assets/images/6-themollusk.jpg" alt="The Mollusk">
+                <img src="./assets/images/7-whitepepper.jpg" alt="White Pepper">
+                <img src="./assets/images/8-quebec.png" alt="Quebec">
+                <img src="./assets/images/9-lacucaracha.jpg" alt="La Cucaracha">
+            </div>
+        </section>
+
+        <section class="comments">
+            <h2>Join the Conversation</h2>
+            <section class="input">
+                <aside>
+                    <img src="./assets/images/0-boognish-avi.png" alt="avatar" class="avatar">
+                </aside>
+                <div>
+                    <form id="commentForm">
+                        <label for="nameInput" class="txt form label">NAME</label>
+
+                        <input class="txt form field" type="text" name="nameInput" id="nameInput"
+                            placeholder="Enter your name">
+
+                        <label for="commentInput" class="txt form label">COMMENT</label>
+
+                        <textarea class="txt form field" name="commentInput" id="commentInput"
+                            placeholder="Add a new comment" rows="3"></textarea>
+
+                        <input class="txt form button" type="submit" value="COMMENT">
+                    </form>
+                </div>
+            </section>
+            <section class="output">
+                <ul id="commentDisplay" data-type="commentDisplay">
+                    <!-- CONTENT POPULATED BY JS -->
+
+                </ul>
+            </section>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="top">
+            <h2>Get In Touch</h2>
+            <div class="socials">
+                <a href="http://instagram.com/weeninfo"><img src="./assets/icons/svg/icon-instagram.svg"
+                        alt="insta"></a>
+                <a href="http://facebook.com/ween"><img src="./assets/icons/svg/icon-facebook.svg" alt="facebook"></a>
+                <a href="http://twitter.com/weeninfo"><img src="./assets/icons/svg/icon-twitter.svg" alt="twitter"></a>
+            </div>
+            <div class="logo"><img src="./assets/logo/ween-logo.png" alt="logo"></div>
+        </div>
+        <div class="mid">
+            <div>
+                <div>
+                    <p>Gene Ween</p>
+                    <p>Vocals, brother to Dean</p>
+                </div>
+                <div>
+                    <p>133 Joppa Rd.</p>
+                    <p>New Hope, PA</p>
+                </div>
+                <div>
+                    <p>
+                        <a href="mailto:gene@ween.com">gene@ween.com</a>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <p>Dean Ween</p>
+                    <p>Guitar, brother to Gene</p>
+                </div>
+                <div>
+                    <p>744 Buckingham Green</p>
+                    <p>New Hope, PA</p>
+                </div>
+                <div>
+                    <p>
+                        <a href="mailto:dean@ween.com">dean@ween.com</a>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <p>The Stallion</p>
+                    <p>MANG</p>
+                </div>
+                <div>
+                    <p>Mach 10 at Sudden Speed </p>
+                    <p>Parts 1 - 5</p>
+                </div>
+                <div>
+                    <p>
+                        <a href="mailto:mount@thesteed.com">mount@thesteed.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="btm">
+            <img src="./assets/logo/ween-logo.png" alt="logo">
+            <p>The Boognish © 2023 All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="./scripts/index.js"></script>
+</body>
+
+</html>
