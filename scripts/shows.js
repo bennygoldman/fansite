@@ -24,6 +24,14 @@ const showdateActionFactory = () => {
         return formattedDate;
     };
 
+    const toggleSelectedRow = (row) => {
+        const table = document.querySelectorAll('div[data-showrow]');
+        table.forEach(row => {
+            if (row.classList.contains('selected')) { row.classList.remove('selected'); }
+        });
+        row.classList.add('selected');
+    };
+
     const renderShows = (arr) => {
         const $showListEl = document.querySelector('.show-list');
 
@@ -54,6 +62,8 @@ const showdateActionFactory = () => {
             $showRowEl.appendChild($location);
             $showRowEl.appendChild($showButtonEl);
             $showListEl.appendChild($showRowEl);
+            $showRowEl.addEventListener('click', () => toggleSelectedRow($showRowEl));
+
         });
 
 
