@@ -214,48 +214,47 @@ const fetchActionFactory = () => {
 };
 
 // FORM ACTIONS
-const initalizeForm = () => {
+const initializeForm = () => {
     const $commentForm = document.getElementById('commentForm');
 
-    // REMOVES ERROR CLASS FROM AN ELEMENT
-    // const clearErrorClass = (el) => {
-    //     if (el.classList.includes('error')) {
-    //         el.classList.remove('error');
-    //     }
-    // };
+    const isFilled = (input) => {
+        const value = input.value.trim();
+        const hasError = !value;
+        input.classList.toggle('error', hasError);
+        return !hasError;
+    };
 
-    // ADDS ERROR CLASS TO AN ELEMENT
-    // const addErrorClass = (el) => {
-    // el.classList.add('error');
-    // };
+    const createCommentObj = (name, comment) => {
 
-    // const checkError = el => {
+        return {
+            name: name,
+            comment: comment
+        };
 
-    // };
+    };
 
-    const submitCommentEvent = e => {
+    const postComment = (commentObj) => {
+        const commentApi = fetchActionFactory();
+        commentApi.postComment(commentObj);
+    };
+
+    const resetForm = form => form.reset();
+
+    const submitCommentHandler = e => {
         e.preventDefault();
-        const name = e.target.nameInput.value;
-        const comment = e.target.commentInput.value;
+        const nameIsFilled = isFilled(e.target.nameInput);
+        const commentIsFilled = isFilled(e.target.commentInput);
 
-        if (name && comment) {
-            const commentApi = fetchActionFactory();
-            // CREATES A COMMENT OBJECT FOR ADDING TO AN ARRAY
-            const createCommentObj = (name, comment) => {
-
-                return {
-                    name: name,
-                    comment: comment
-                };
-
-            };
+        if (nameIsFilled && commentIsFilled) {
+            const name = e.target.nameInput.value;
+            const comment = e.target.commentInput.value;
             const commentObj = createCommentObj(name, comment);
-            commentApi.postComment(commentObj);
-            e.target.reset();
+            postComment(commentObj);
+            resetForm(e.target);
         }
     };
 
-    $commentForm.addEventListener('submit', submitCommentEvent);
+    $commentForm.addEventListener('submit', submitCommentHandler);
 
 };
 
@@ -264,7 +263,7 @@ const loadPage = () => {
     // VARIABLES FOR DOM ELEMENTS
     const commentsApi = fetchActionFactory();
     commentsApi.getComments();
-    initalizeForm();
+    initializeForm();
 };
 
 loadPage();
