@@ -24,6 +24,4 @@ Key differences between the original assignment and this "Fansite":
 - CSS is vanilla without any pre- or post-processors. I wanted to to try native variable naming and new nesting features.
 - JavaScript uses built-in fetch API to interact with the server.
 
-Time permitting, I'll make a few minor improvements to clean it up.
-
 This was a fun challenge and a great personal experience to see how my code has evolved from bootcamp to now.
